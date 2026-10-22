@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131b"><title>Gather — Social Media</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <section id="auth-view" class="auth-layout">
+    <div class="auth-brand">
+      <div class="brand-mark">g<span>•</span></div><p class="eyebrow">CODEALPHA · TASK 02</p>
+      <h1>Good people.<br><em>Good conversations.</em></h1>
+      <p class="muted lead">A small space to share what matters, discover new voices, and stay connected.</p>
+      <div class="feature-pills"><span>✳ Share updates</span><span>♡ Appreciate posts</span><span>↗ Find your people</span></div>
+    </div>
+    <div class="auth-card">
+      <div class="auth-tabs"><button class="tab active" data-auth-tab="login">Sign in</button><button class="tab" data-auth-tab="register">Create account</button></div>
+      <form id="login-form" class="auth-form">
+        <h2>Welcome back</h2><p class="muted">Pick up where the conversation left off.</p>
+        <label>Username or email<input name="identity" autocomplete="username" required placeholder="shalini or you@example.com"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Your password"></label>
+        <button class="btn btn-primary full" type="submit">Sign in <span>→</span></button>
+      </form>
+      <form id="register-form" class="auth-form hidden">
+        <h2>Make yourself at home</h2><p class="muted">Your next conversation starts here.</p>
+        <label>Display name<input name="displayName" maxlength="40" required placeholder="How people know you"></label>
+        <label>Username<input name="username" minlength="3" maxlength="24" pattern="[A-Za-z0-9_.]+" required placeholder="letters, numbers, _ or ."></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label>Password<input name="password" type="password" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters"></label>
+        <button class="btn btn-primary full" type="submit">Create account <span>→</span></button>
+      </form>
+      <p class="fine-print">A demo project for the CodeAlpha Full Stack Development internship.</p>
+    </div>
+  </section>
+
+  <section id="app-view" class="app-layout hidden">
+    <header class="topbar">
+      <a href="#feed" class="brand-lockup" aria-label="Gather home"><span class="brand-mark small">g<span>•</span></span><span>gather</span></a>
+      <div class="topbar-center"><span class="status-dot"></span><span>Find your people, one post at a time.</span></div>
+      <div class="topbar-user"><div id="top-avatar" class="avatar avatar-small">G</div><span id="top-name">Guest</span><button id="logout-button" class="text-button">Sign out ↗</button></div>
+    </header>
+    <div class="app-grid">
+      <aside class="sidebar">
+        <p class="side-label">YOUR SPACE</p>
+        <button class="nav-item active" data-view="feed"><span class="nav-icon">⌂</span> Home feed</button>
+        <button class="nav-item" data-view="discover"><span class="nav-icon">⌕</span> Discover people</button>
+        <button class="nav-item" data-view="profile"><span class="nav-icon">◉</span> My profile</button>
+        <div class="sidebar-card"><span class="spark">✳</span><p class="side-label">A LITTLE REMINDER</p><p>Good conversations begin with a little curiosity.</p></div>
+        <div class="sidebar-bottom"><span class="status-dot"></span> Local demo · SQLite</div>
+      </aside>
+      <main class="main-content">
+        <section id="feed-section" class="view-section">
+          <div class="page-heading"><div><p class="eyebrow">YOUR COMMUNITY</p><h1>Home feed<span class="period">.</span></h1><p class="muted">A moment, an idea, or something worth sharing.</p></div><span class="heading-icon">✳</span></div>
+          <form id="post-form" class="composer panel"><div id="composer-avatar" class="avatar">G</div><div class="composer-body"><textarea name="content" maxlength="2000" required placeholder="What’s on your mind today?"></textarea><div class="composer-footer"><span class="muted tiny">Share a thought with the community</span><button class="btn btn-primary" type="submit">Publish post <span>↗</span></button></div></div></form>
+          <div class="feed-toolbar"><span class="section-title">LATEST CONVERSATIONS</span><button id="refresh-feed" class="text-button">↻ Refresh</button></div>
+          <div id="feed-list" class="post-list"><div class="loading-state">Loading your community<span class="loading-dots">•••</span></div></div>
+        </section>
+        <section id="discover-section" class="view-section hidden">
+          <div class="page-heading"><div><p class="eyebrow">MEET SOMEONE NEW</p><h1>Discover<span class="period">.</span></h1><p class="muted">Search names and usernames to find people to follow.</p></div><span class="heading-icon">⌕</span></div>
+          <form id="search-form" class="search-form panel"><span class="search-icon">⌕</span><input name="q" minlength="1" placeholder="Search by name or username…" autocomplete="off"><button class="btn btn-primary" type="submit">Search</button></form>
+          <div id="search-results" class="people-grid"><div class="empty-state">Try searching for a name or username.</div></div>
+        </section>
+        <section id="profile-section" class="view-section hidden">
+          <div class="page-heading"><div><p class="eyebrow">YOUR CORNER OF THE INTERNET</p><h1>Profile<span class="period">.</span></h1><p class="muted">A little introduction goes a long way.</p></div><span class="heading-icon">◉</span></div>
+          <div id="profile-card" class="profile-card panel"><div class="loading-state">Loading profile…</div></div>
+          <div id="profile-posts" class="post-list profile-post-list"></div>
+        </section>
+      </main>
+      <aside class="right-rail">
+        <div class="rail-card"><div class="rail-card-head"><span class="section-title">HOW IT WORKS</span><span>✧</span></div><div class="rail-tip"><span>01</span><div><b>Share a thought</b><p>Post something short, useful, or fun.</p></div></div><div class="rail-tip"><span>02</span><div><b>Join the conversation</b><p>Leave a comment and show appreciation.</p></div></div><div class="rail-tip"><span>03</span><div><b>Build your circle</b><p>Follow people whose posts you enjoy.</p></div></div></div>
+        <div class="quote-card"><span class="quote-mark">“</span><p>Connection grows when we make room for each other.</p><span class="quote-line"></span><small>THE GATHER NOTE</small></div>
+        <div class="right-footer">CODEALPHA · FULL STACK DEVELOPMENT<br>Task 2 — Social Media Platform</div>
+      </aside>
+    </div>
+  </section>
+  <script src="/app.js" defer></script>
+</body></html>
